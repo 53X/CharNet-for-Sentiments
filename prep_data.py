@@ -37,7 +37,7 @@ def create_dataset(path='dbpedia_data'):
 	return texts, labels			
 
 
-def structure_data(path='dbpedia_data'):
+def structure_data(path='agnews_data'):
 
 	texts, labels = create_dataset(path)
 	tok =Tokenizer(char_level=True, split='')
@@ -51,6 +51,9 @@ def structure_data(path='dbpedia_data'):
 	print('Annotations done and Data is ready to be fed to the network')
 
 	return padding, labels
+
+
+
 
 	
 
