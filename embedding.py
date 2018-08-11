@@ -1,5 +1,11 @@
 import string
 import os
+import keras
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
+from keras.utils import to_categorical
+import numpy as np
+
 
 alphabet = list(string.ascii_lowercase) + list(string.digits) + list(string.punctuation) + ['\n']
 char_index = {}
@@ -29,6 +35,24 @@ def create_dataset(path='dbpedia_data'):
 	print('{} classes found'.format(i+1))
 
 	return texts, labels			
+
+
+def structure_data(path='dbpedia_data'):
+
+	texts, labels = create_dataset(path)
+	tok =Tokenizer(char_level=True, split='')
+	tok.fit_on_texts(texts)
+	sequences = tok.texts_to_sequences(texts)
+	padding = pad_sequences(sequences, maxlen=2000, padding='post')
+	data = np.array(padding)
+	annotations = to_categorical(labels)
+
+	print('Annotations done and Data is ready to be fed to the network')
+
+	return data, annotations
+
+	
+
 
 
 	
