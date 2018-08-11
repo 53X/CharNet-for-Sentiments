@@ -42,14 +42,15 @@ def structure_data(path='dbpedia_data'):
 	texts, labels = create_dataset(path)
 	tok =Tokenizer(char_level=True, split='')
 	tok.fit_on_texts(texts)
+	tok.word_index = char_index
 	sequences = tok.texts_to_sequences(texts)
-	padding = pad_sequences(sequences, maxlen=2000, padding='post')
-	data = np.array(padding)
-	annotations = to_categorical(labels)
+	padding = pad_sequences(sequences, maxlen=1024, padding='post')
+	padding = np.array(padding)
+	labels = to_categorical(labels)
 
 	print('Annotations done and Data is ready to be fed to the network')
 
-	return data, annotations
+	return padding, labels
 
 	
 
@@ -58,6 +59,6 @@ def structure_data(path='dbpedia_data'):
 	
 if __name__ =='__main__':
 
-	create_dataset()
+	structure_data()
 
 
