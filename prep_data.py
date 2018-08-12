@@ -53,12 +53,6 @@ def structure_data(path='agnews_data'):
 	return padding, labels
 
 
-
-
-	
-
-
-
 	
 if __name__ =='__main__':
 
