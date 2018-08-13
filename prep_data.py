@@ -44,7 +44,7 @@ def structure_data(path='agnews_data'):
 	tok.fit_on_texts(texts)
 	tok.word_index = char_index
 	sequences = tok.texts_to_sequences(texts)
-	padding = pad_sequences(sequences, maxlen=1024, padding='post')
+	padding = pad_sequences(sequences, maxlen=1014, padding='post')
 	padding = np.array(padding)
 	labels = to_categorical(labels)
 

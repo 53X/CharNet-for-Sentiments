@@ -2,15 +2,15 @@ import keras
 from keras.layers import Conv1D, MaxPooling1D, Dense, Input, Embedding, Dropout
 from keras.optimizers import SGD
 
-optimizer = SGD(lr=0.01, momentum = 0.9)
 
+def character_model(vocab_size=69, maxlen=1014, classification):
 
-
-def character_model(vocab_size=69, maxlen=1024, classification):
+	optimizer = SGD(lr=0.01, momentum=0.9)
 
 	input_layer = Input(shape=(maxlen, ), name='sentence input')
 
-	embedding = Embedding(input_dim = vocab_size+1, output_dim = 70, name='character embedding')(input_layer)
+	embedding = Embedding(input_dim = vocab_size+1, output_dim = 70,
+						  name='character embedding')(input_layer)
 
 	conv_1 = Conv1D(filters=1024, kernel_size=7,  padding='valid',
 					activation='relu', name='first conv')(embedding)
